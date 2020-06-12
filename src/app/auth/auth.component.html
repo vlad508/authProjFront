@@ -1,0 +1,39 @@
+<div class="container" style="width: 500px">
+  <div class="d-flex justify-content-center h-100">
+
+    <div class="card-body">
+      <div class="card-header flex">
+        <h1 class="justify-content-start">Sign in</h1>
+        <div class="justify-content-end">
+          <img src="assets/Facebook.svg" width="30px" height="30px" (click)="signInWithSocial('facebook')" alt="facebook"/>
+          <img src="assets/google.svg" width="30px" height="30px" (click)="signInWithSocial('google')" alt="google"/>
+        </div>
+        <div style="color: red" *ngIf="error">Username or password incorrect</div>
+      </div>
+    <form (ngSubmit)="onSubmit()" class="text-center mx-auto" [formGroup]="form">
+      <div>
+        <label for="InputEmail" class="input-group form-group">Email</label>
+        <input type="email" formControlName="inputEmail" id="InputEmail" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && form.controls.inputEmail.errors }"/>
+        <div *ngIf="submitted && form.controls.inputEmail.errors" class="invalid-feedback">
+          <div *ngIf="form.controls.inputEmail.errors.required">Email is required</div>
+          <div *ngIf="form.controls.inputEmail.errors.inputEmail">Email must be a valid email address</div>
+        </div>
+      </div>
+      <div>
+        <label for="Password" class="input-group form-group">Password</label>
+        <input type="password" formControlName="password" id="Password" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && form.controls.password.errors }"/>
+        <div *ngIf="submitted && form.controls.password.errors" class="invalid-feedback">
+          <div *ngIf="form.controls.password.errors.required">Password is required</div>
+          <div *ngIf="form.controls.password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+      </div>
+      <div class="button mt-3">
+        <button type="submit" class="btn btn-primary">Log In</button>
+      </div>
+      <p>Not have account <a routerLink="../register">registration</a></p>
+    </form>
+  </div>
+  </div>
+</div>
